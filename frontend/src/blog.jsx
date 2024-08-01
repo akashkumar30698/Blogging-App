@@ -39,6 +39,10 @@ function Blog() {
 
         const token = Cookies.get("Login-Token");
 
+      console.log(token)
+
+
+
         if (!token) {
             navigate("/login");
             return console.log("Login required");
