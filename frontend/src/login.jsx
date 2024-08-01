@@ -48,6 +48,9 @@ const[loading,setLoading] = useState(false)
           setIsLoggedIn(true);
           setCheck(false)
           navigate(`/${data.params}`,{id : data.params});
+
+
+          
         } else {
              setFormData({
               email: '',
