@@ -35,9 +35,18 @@ app.use(cors(corsOptions));
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-// Serve static files from the frontend build
-const frontendPath = path.join(__dirname, "../frontend/dist");
-app.use(express.static(frontendPath));
+// Serve static files from the 'dist' directory
+app.use(express.static(path.join(__dirname, 'dist')));
+
+// Handle all other routes by serving the index.html file
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+})
+
+
+
+
+
 
 // API routes
 app.use("/", home);
@@ -53,10 +62,6 @@ connectToDB(process.env.MONGODB_CONNECTION)
     console.error("MongoDB connection error:", error);
   });
 
-// Catch-all handler to serve React's index.html for client-side routing
-app.get("*", (req, res) => {
-  res.sendFile(path.join(frontendPath, "index.html"));
-});
 
 // Start the server
 app.listen(port, () => {
