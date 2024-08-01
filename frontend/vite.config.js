@@ -8,5 +8,9 @@ export default defineConfig({
       "/signUp" : "http://localhost:8000",
     },*/
   },
+  build: {
+    // Specify the output directory for your production build
+    outDir: 'dist', // Ensure this matches the directory your Express server serves
+  },
   plugins: [react()],
 })
