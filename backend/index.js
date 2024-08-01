@@ -37,6 +37,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+app.options('*', cors()) // include before other routes
 
 
 
