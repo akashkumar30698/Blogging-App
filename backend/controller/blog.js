@@ -1,37 +1,17 @@
 const { userBlog } = require("../model/blog");
 const { uploadOnCloudinary } = require("../cloud/cloudinary.js")
-const { uploadFiles } = require("../multer/upload.js")
-
-
-// Middleware to handle file uploads
-const upload = uploadFiles().single('upload'); 
-
 
 
 async function handleUserAddBlog(req, res) {
     
 
   try {
-
-    upload(req, res, async (err) => {
-      if (err) {
-        return res.status(500).json({ message: "Error uploading file", error: err.message });
-      }
-    })
-
-
-
-
-
-   // const localFilePath = req.file.path
+    const localFilePath = req.file.path
     
     const { title, body } = req.body;
 
-
-          // Upload file buffer to Cloudinary
-          const fileName = `${Date.now()}-${file.originalname}`;
-    const cloudResponse = await uploadOnCloudinary(file.buffer, fileName);
-    const userImageURL = cloudResponse.secure_url
+      const cloudURL  =  await uploadOnCloudinary(localFilePath)
+      const userImageURL = cloudURL.url
     
 
 
