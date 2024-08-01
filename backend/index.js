@@ -18,13 +18,25 @@ const port = process.env.PORT || 4000;
 
 // CORS
 
+const whitelist = [
+  'http://localhost:5173', // Local development URL
+   `${process.env.REACT_API_URL}`       // Production URL
+]; //                 |   DONT CHANGE REACT_API
+
 const corsOptions = {
-  
-  origin: `${process.env.REACT_API_URL}`, // DONT CHANGE REACT_API
-  credentials: true, // Allow credentials (cookies, authorization headers, etc.)
-  
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true, // Enable cookies and other credentials
 };
+
+
 app.use(cors(corsOptions));
+
 
 
 
