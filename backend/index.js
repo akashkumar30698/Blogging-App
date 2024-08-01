@@ -20,7 +20,7 @@ const port = process.env.PORT || 4000;
 
 const whitelist = [
   "http://localhost:5173", // Local development URL
-   process.env.REACT_API_URL       // Production URL
+   `${process.env.REACT_API_URL}`       // Production URL
 ]; //                 |   DONT CHANGE REACT_API
 
 const corsOptions = {
