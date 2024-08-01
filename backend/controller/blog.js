@@ -4,7 +4,7 @@ const { uploadOnCloudinary } = require("../cloud/cloudinary.js")
 
 
 // Middleware to handle file uploads
-const upload = uploadFiles().single('file'); 
+const upload = uploadFiles().single('upload'); 
 
 
 
@@ -23,7 +23,7 @@ async function handleUserAddBlog(req, res) {
 
 
 
-    const localFilePath = req.file.path
+   // const localFilePath = req.file.path
     
     const { title, body } = req.body;
 
