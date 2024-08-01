@@ -14,7 +14,7 @@ require('dotenv').config(); //used for securing data so important credentials ca
 const port = process.env.PORT || 4000;
 
 
-  console.log(process.env.REACT_URL)
+  
 
 // CORS
 
@@ -65,9 +65,12 @@ app.use("/",addBlog)
 
 
 // MongoDB connection
-connectToDB(`${process.env.MONGODB_CONNECTION}/blogging-app`)
+connectToDB(`${process.env.MONGODB_CONNECTION}`)
   .then(() => {
     console.log("MongoDB connected");
+  })
+  .catch((error) => {
+    console.error("MongoDB connection error:", error);
   });
 
 
