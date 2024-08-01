@@ -32,6 +32,7 @@ const corsOptions = {
     }
   },
   credentials: true, // Enable cookies and other credentials
+  methods: ["GET","POST","PUT","DELETE","PATCH","OPTIONS"], // Allow all methods
 };
 
 
