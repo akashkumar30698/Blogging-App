@@ -1,6 +1,6 @@
 const { userBlog } = require("../model/blog");
 const { uploadOnCloudinary } = require("../cloud/cloudinary.js")
-
+const { uploadFiles } = require("../multer/upload.js")
 
 
 // Middleware to handle file uploads
