@@ -1,19 +1,20 @@
 const express = require("express");
-const app = express();
 const path = require("path");
-const { router: userAuth } = require("./routes/userAuth");
 const cors = require("cors");
-const { router: home } = require("./routes/userAuth");
-const { connectToDB } = require("./connectToDB");
-const { router: addBlog } = require("./routes/blog");
 require("dotenv").config();
 
+const { router: userAuth } = require("./routes/userAuth");
+const { router: home } = require("./routes/userAuth");
+const { router: addBlog } = require("./routes/blog");
+const { connectToDB } = require("./connectToDB");
+
+const app = express();
 const port = process.env.PORT || 4000;
 
-// CORS Configuration
+// CORS configuration
 const whitelist = [
   "http://localhost:5173", // Local development URL
-  `${process.env.REACT_API_URL}`, // Production URL
+  process.env.REACT_APP_URL, //  Production level
 ];
 
 const corsOptions = {
@@ -26,26 +27,25 @@ const corsOptions = {
   },
   credentials: true, // Enable cookies and other credentials
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"], // Allow all methods
-  allowedHeaders: ["Content-Type", "Authorization"], // Specify allowed headers
 };
 
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions)); // Handle preflight requests
 
 // Middleware to parse frontend data (Body)
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json()); // for parsing application/json
+app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-// API Routes
+// Serve static files from the frontend build
+const frontendPath = path.join(__dirname, "../frontend/dist");
+app.use(express.static(frontendPath));
+
+// API routes
 app.use("/", home);
 app.use("/", userAuth);
 app.use("/", addBlog);
 
-// Serve static files for images
-app.use("/uploads", express.static(path.join(__dirname, "userUploads")));
-
 // MongoDB connection
-connectToDB(`${process.env.MONGODB_CONNECTION}`)
+connectToDB(process.env.MONGODB_CONNECTION)
   .then(() => {
     console.log("MongoDB connected");
   })
@@ -53,11 +53,9 @@ connectToDB(`${process.env.MONGODB_CONNECTION}`)
     console.error("MongoDB connection error:", error);
   });
 
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, "../frontend")));
-
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend", "index.html"));
+// Catch-all handler to serve React's index.html for client-side routing
+app.get("*", (req, res) => {
+  res.sendFile(path.join(frontendPath, "index.html"));
 });
 
 // Start the server
