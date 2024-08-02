@@ -38,15 +38,15 @@ async function handleUserLogin(req,res){
           
           const token =  setUser({email,password})
         
-          res.cookie(' Login-Token', token, {
-            domain: 'https://blogging-app-backendd.vercel.app',
+        return  res.cookie('Login-Token', token, {
+            domain: 'blogging-app-backendd.vercel.app',
             sameSite: 'None', // Required for cross-site cookies
             secure: true,     // Required for SameSite=None
             httpOnly: true,   
             path: '/'         
           });
           
-          res.send("Cookie Set")
+        
         
 
        //Sending username to frontend 
