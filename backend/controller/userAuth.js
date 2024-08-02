@@ -39,8 +39,7 @@ async function handleUserLogin(req,res){
           const token =  setUser({email,password})
         
 
-        return  res.cookie('Login-Token', token, {
-            domain: 'blogging-app-backendd.vercel.app',
+          res.cookie('Login-Token', token, {
             sameSite: 'None', // Required for cross-site cookies
             secure: true,     // Required for SameSite=None
             httpOnly: true,   
@@ -51,7 +50,7 @@ async function handleUserLogin(req,res){
         
 
        //Sending username to frontend 
-     /*  const user =   await newUser.findOne({email})   
+       const user =   await newUser.findOne({email})   
        userId = user._id
         
          
@@ -60,7 +59,7 @@ async function handleUserLogin(req,res){
           params : userId,
          
         })
-          */
+          
       }
 }
 
