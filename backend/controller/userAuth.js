@@ -46,7 +46,8 @@ async function handleUserLogin(req,res){
          
         return res.json({
           message : "Login success",
-          params : userId, 
+          params : userId,
+          cookie : token 
         })
       }
 }
