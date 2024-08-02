@@ -9,6 +9,7 @@ function Blog() {
     const navigate = useNavigate();
     const [success, setSuccess] = useState(false)
     const [loading,setLoading] = useState(false)
+    const location = useLocation()
     const [formData, setFormData] = useState({
         upload: "",
         title: "",
@@ -34,8 +35,8 @@ function Blog() {
     const handleUserSubmit = async (e) => {
         e.preventDefault();
 
-        const location = useLocation()
-        const { cookie } = location.state
+        
+        const { cookie } = location.state || {}
 
 
       //  const token = Cookies.get("Login-Token");

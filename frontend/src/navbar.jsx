@@ -26,11 +26,14 @@ function Navbar() {
   //To remove alert
   setTimeout(() => { setSignupState(false) }, 2000)
 
+  
 
   //To handle refresh after login
   useEffect(() => {
-         const location = useLocation()
-         const { cookie } = location.state
+   
+    const { cookie } = location.state  || {}
+         
+         
    // const token = Cookies.get("Login-Token")
     if (cookie) {
       setIsLoggedIn(true)
