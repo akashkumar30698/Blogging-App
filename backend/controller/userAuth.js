@@ -37,6 +37,7 @@ async function handleUserLogin(req,res){
       else{
           
           const token =  setUser({email,password})
+          console.log(token)
           res.cookie('Login-Token', token, {
             domain: '.blogging-app-backendd.vercel.app', // Backend url
             httpOnly: true,
