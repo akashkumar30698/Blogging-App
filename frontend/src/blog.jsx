@@ -36,18 +36,18 @@ function Blog() {
         e.preventDefault();
 
         
-        const { cookie } = location.state || {}
+      //  const { cookie } = location.state || {}
 
 
-      //  const token = Cookies.get("Login-Token");
-        console.log(location.state)
-      console.log(cookie)
+        const token = Cookies.get("Login-Token");
+       // console.log(location.state)
+      console.log(token)
 
  
 
-        if (!cookie) {
+        if (!token) {
             navigate("/login");
-            return console.log("Login required yay");
+            return console.log("Login required token");
         }
 
         setLoading(true)

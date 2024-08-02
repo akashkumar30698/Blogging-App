@@ -31,11 +31,11 @@ function Navbar() {
   //To handle refresh after login
   useEffect(() => {
    
-    const { cookie } = location.state  || {}
+   // const { cookie } = location.state  || {}
          
          
-   // const token = Cookies.get("Login-Token")
-    if (cookie) {
+    const token = Cookies.get("Login-Token")
+    if (token) {
       setIsLoggedIn(true)
     }
 
