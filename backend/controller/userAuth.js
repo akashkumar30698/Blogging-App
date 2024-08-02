@@ -43,6 +43,7 @@ async function handleUserLogin(req,res){
             secure: true,
             sameSite: 'None' // Ensure cookies are sent across different origins
           });
+          res.send('Cookie set');
         
 
        //Sending username to frontend
