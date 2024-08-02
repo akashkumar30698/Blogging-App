@@ -47,7 +47,7 @@ function Blog() {
 
         if (!cookie) {
             navigate("/login");
-            return console.log("Login required");
+            return console.log("Login required yay");
         }
 
         setLoading(true)
