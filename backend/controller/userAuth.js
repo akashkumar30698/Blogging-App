@@ -42,7 +42,7 @@ async function handleUserLogin(req,res){
             domain: ".blogging-app-backendd.vercel.app", // Backend url
             httpOnly: true,
             secure: true,
-            SameSite: "None" // Ensure cookies are sent across different origins
+            sameSite: "None" // Ensure cookies are sent across different origins
           });
           res.send('Cookie set');
         
@@ -53,9 +53,9 @@ async function handleUserLogin(req,res){
         
          
         return res.json({
-          message : "Login success",
+          message : [token,"message success"],
           params : userId,
-          "black" : token,
+         
         })
       }
 }
