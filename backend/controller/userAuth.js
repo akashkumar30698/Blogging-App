@@ -38,7 +38,7 @@ async function handleUserLogin(req,res){
           
           const token =  setUser({email,password})
           res.cookie('Login-Token', token, {
-            domain: `${process.env.REACT_API_URL}`, // Use base domain if needed
+            domain: '.blogging-app-backendd.vercel.app', // Backend url
             httpOnly: true,
             secure: true,
             sameSite: 'None' // Ensure cookies are sent across different origins
