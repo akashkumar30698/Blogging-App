@@ -24,10 +24,12 @@ app.get('*', (req, res) => {
 
 // CORS
 
-app.use(cors({
+const corsOptions = {
   origin: `${process.env.REACT_API_URL}`,
   credentials: true,
-}));
+}
+  
+
 
 app.use(cors(corsOptions));
 
