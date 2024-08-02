@@ -42,12 +42,12 @@ async function handleUserLogin(req,res){
             domain: ".blogging-app-backendd.vercel.app", // Backend url
             httpOnly: true,
             secure: true,
-            sameSite: "None" // Ensure cookies are sent across different origins
+            SameSite: "None" // Ensure cookies are sent across different origins
           });
           res.send('Cookie set');
         
 
-       //Sending username to frontend
+       //Sending username to frontend 
        const user =   await newUser.findOne({email})   
        userId = user._id
         
