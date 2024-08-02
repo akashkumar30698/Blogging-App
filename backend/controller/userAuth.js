@@ -37,7 +37,13 @@ async function handleUserLogin(req,res){
       else{
           
           const token =  setUser({email,password})
-          res.cookie("Login-Token",token)
+          res.cookie('Login-Token', token, {
+            domain: `${process.env.REACT_API_URL}`, // Use base domain if needed
+            httpOnly: true,
+            secure: true,
+            sameSite: 'None' // Ensure cookies are sent across different origins
+          });
+        
 
        //Sending username to frontend
        const user =   await newUser.findOne({email})   
