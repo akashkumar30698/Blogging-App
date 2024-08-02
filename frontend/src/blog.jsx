@@ -65,7 +65,8 @@ function Blog() {
             const res = await fetch(`${import.meta.env.VITE_APP_URL}/:user/blog`, {
                 method: 'POST',
                 headers: { 'Authorization': `Bearer ${token}` }, //Dont use 'Content-Type': 'application/json' as it is not able to transfer  large files like images
-                body: formDataToSend
+                body: formDataToSend,
+            
             });
 
             if (res.ok) {
