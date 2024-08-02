@@ -40,7 +40,7 @@ function Login() {
           setIsLoggedIn(true);
           setCheck(false);
           navigate(`/${data.params}`, { id: data.params });
-          console.log(data.cookie);
+          console.log(data);
         } else {
           setFormData({
             email: '',
