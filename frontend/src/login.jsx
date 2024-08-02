@@ -39,8 +39,8 @@ function Login() {
         if (data !== 'login-failed') {
           setIsLoggedIn(true);
           setCheck(false);
-          navigate(`/${data.params}`, { id: data.params });
-          console.log(data);
+          navigate(`/${data.params}`, { id: data.params, cookie : data.cookie });
+         
         } else {
           setFormData({
             email: '',

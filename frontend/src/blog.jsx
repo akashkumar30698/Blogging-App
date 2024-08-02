@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import Cookies from 'js-cookie';
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,useLocation } from "react-router-dom";
 import Navbar from "./navbar";
 
 
@@ -34,16 +34,17 @@ function Blog() {
     const handleUserSubmit = async (e) => {
         e.preventDefault();
 
-    
+        const location = useLocation()
+        const { cookie } = location.state
 
 
-        const token = Cookies.get("Login-Token");
+      //  const token = Cookies.get("Login-Token");
+       
+      console.log(cookie)
 
-      console.log(token)
+ 
 
-
-
-        if (!token) {
+        if (!cookie) {
             navigate("/login");
             return console.log("Login required");
         }
