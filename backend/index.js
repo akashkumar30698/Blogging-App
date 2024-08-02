@@ -24,23 +24,10 @@ app.get('*', (req, res) => {
 
 // CORS
 
-const whitelist = [
-  "http://localhost:5173", // Local development URL
-   `${process.env.REACT_API_URL}`       // Production URL
-]; //                 |   DONT CHANGE REACT_API
-
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true, // Enable cookies and other credentials
-  methods: ["GET","POST","PUT","DELETE","PATCH","OPTIONS"], // Allow all methods
-};
-
+app.use(cors({
+  origin: `${process.env.REACT_API_URL}`,
+  credentials: true,
+}));
 
 app.use(cors(corsOptions));
 
