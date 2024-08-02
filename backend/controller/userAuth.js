@@ -38,12 +38,8 @@ async function handleUserLogin(req,res){
           
           const token =  setUser({email,password})
         
-             res.cookie("Login-Token", token, {
-            
-            sameSite: "None", // Ensure cookies are sent across different origins
-          
-          });
-          res.send("Cookie Set")
+             res.cookie("Login-Token",token,{ sameSite: 'none',secure: true});
+   
         
 
        //Sending username to frontend 
