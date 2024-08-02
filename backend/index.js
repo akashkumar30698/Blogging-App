@@ -31,7 +31,7 @@ app.use(cors({
 
 app.use(cors(corsOptions));
 
-//app.options('*', cors()) // include before other routes
+
 
 
 
@@ -91,7 +91,7 @@ connectToDB(`${process.env.MONGODB_CONNECTION}`)
 
 // To fix error "Cannot get /signUp" (Optional to use as error might have occured cuz of proxy in vite.config.js)
 
-
+/*
 
 // Serve static files from the React app
 //FIX 1
@@ -107,6 +107,7 @@ app.get('*', (req, res) => {
   });
 });
 
+*/
 
 
 
