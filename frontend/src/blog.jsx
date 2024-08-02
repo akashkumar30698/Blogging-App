@@ -40,7 +40,7 @@ function Blog() {
 
 
       //  const token = Cookies.get("Login-Token");
-       
+        console.log(location.state)
       console.log(cookie)
 
  
