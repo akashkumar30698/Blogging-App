@@ -87,7 +87,7 @@ async function handleUserSignUp(req,res){
          })
          
          
-        return res.status(201).json({message : "Sign Up successful "})
+        return res.status(201).json({message : "Sign Up successfull yay "})
       }
         
     }
