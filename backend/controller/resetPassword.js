@@ -2,12 +2,20 @@ const { newUser } = require("../model/userAuth")
 
 
 async function handleResetPassword(req,res){
-         const { email,password,confirmPassword } = req.body
-           console.log(email)
+        
+        
 
           try{
-            if(password == confirmPassword){
-                return res.json({failure : "password is not matching"})
+            const { email,password,confirmPassword } = req.body
+
+          //  
+///
+              const checkEmailExist = await newUser.findOne({ email })
+
+
+
+            if(password != confirmPassword || !checkEmailExist){
+                return res.json("failure")
             }
 
 
@@ -15,7 +23,7 @@ async function handleResetPassword(req,res){
             { $set : {password : password}},
             { new : true }
         )
-             return res.json("Updated")
+             return res.json("success")
     
     }
 

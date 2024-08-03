@@ -11,7 +11,7 @@ async function handleUserAddBlog(req, res) {
     const { title, body } = req.body;
 
       const cloudURL  =  await uploadOnCloudinary(localFilePath)
-      const userImageURL = cloudURL.url
+      const userImageURL = cloudURL.url.replace(/^http:\/\//i, "https://");
     
 
 
