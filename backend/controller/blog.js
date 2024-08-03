@@ -3,17 +3,20 @@ const { uploadOnCloudinary } = require("../cloud/cloudinary.js")
 
 
 async function handleUserAddBlog(req, res) {
-    
-
   try {
-    const localFilePath = req.file.path
-    
+    if (!req.file) {
+      return res.status(400).json({ message: "No file uploaded" });
+    }
+
+    const localFilePath = req.file.path;
     const { title, body } = req.body;
 
-      const cloudURL  =  await uploadOnCloudinary(localFilePath)
-      const userImageURL = cloudURL.url.replace(/^http:\/\//i, "https://");
-    
+    const cloudURL = await uploadOnCloudinary(localFilePath);
+    if (!cloudURL || !cloudURL.url) {
+      throw new Error("Failed to upload image to Cloudinary");
+    }
 
+    const userImageURL = cloudURL.url.replace(/^http:\/\//i, "https://");
 
     await userBlog.create({
       blogImageURL: userImageURL,
@@ -21,18 +24,15 @@ async function handleUserAddBlog(req, res) {
       body: body,
     });
 
-    return res.json({
-      message: "success",
-    });
+    return res.json({ message: "success" });
   } catch (error) {
-    console.error('Error adding blog:', error);
+    console.error("Error adding blog:", error);
     return res.status(500).json({
       message: "Failed to add blog",
       error: error.message,
     });
   }
 }
-
 
 
 
