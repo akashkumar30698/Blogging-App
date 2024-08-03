@@ -4,13 +4,13 @@ import { useLocation } from "react-router-dom"
 function Article(){
      const location = useLocation()
      const { post } = location.state 
-       console.log(location)
-       console.log(post)
+    
     return (
-        <div className="center-container">
+        <>
+         <div className="center-container">
            <div key={post?._id} className="center bg-white shadow-md border border-gray-200 rounded-lg  mb-2">
               <a href="#">
-                  <img className="rounded-t-lg" src={`${import.meta.env.VITE_APP_URL}/uploads/${post?.blogImageURL}`} alt={post?.title} />
+                  <img className="rounded-t-lg" src={`${post?.blogImageURL}`} alt={post?.title} />
               </a>
               <div className="p-5">
                   <a href="#">
@@ -20,6 +20,8 @@ function Article(){
               </div>
            </div>
         </div>
+        </>
+       
     )
 }
 
