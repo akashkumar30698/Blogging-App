@@ -47,7 +47,7 @@ function Blog() {
 
         if (!token) {
             navigate("/login");
-            return console.log("Login required token");
+            return console.log("Login required cookies");
         }
 
         setLoading(true)
