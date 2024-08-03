@@ -9,7 +9,7 @@ function ValidateOTP(){
         otp : ""
     })
    const[incorrect,setIncorrect] = useState(false)
-   const [loading,setLoading] = setLoading(false)
+   const [loading,setLoading] = useState(false)
 
 
 
@@ -32,7 +32,7 @@ function ValidateOTP(){
                   });
         
                  if(response.ok){
-                    const data = response.json()
+                    const data = await response.json()
         
    
                   
