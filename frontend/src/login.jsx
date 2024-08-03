@@ -39,8 +39,10 @@ function Login() {
         if (data !== 'login-failed') {
           setIsLoggedIn(true);
           setCheck(false);
-          navigate(`/${data.params}`, { state: { id: data.params, cookie : data.cookie } });
+          navigate(`/${data.params}`, { state: { id: data.params} });
          
+          localStorage.setItem("LoginToken",data.cookie)
+
         } else {
           setFormData({
             email: '',
