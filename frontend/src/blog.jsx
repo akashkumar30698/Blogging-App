@@ -123,11 +123,7 @@ function Blog() {
 
                 <label htmlFor="body" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Your message</label>
                 <textarea id="body" rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange} value={formData.body} name="body" required></textarea>
-                {error && (
-                <div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-error-400" role="alert">
-                    <span className="font-medium">Error Posting Blog !</span>  Please Try Again
-                </div>
-            )}
+                {error && <p className='text-red-700'>Error Posting Blog ! Please Try Again</p>}
                 <button
                     className="mg-t align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none"
                     type="submit"
