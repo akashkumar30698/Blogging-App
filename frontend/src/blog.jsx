@@ -40,14 +40,14 @@ function Blog() {
 
 
         const token = Cookies.get("Login-Token");
-        console.log(location.state)
+        console.log(location)
      
 
  
 
         if (!token) {
             navigate("/login");
-            return console.log("Login required doccu");
+            return console.log("Login required location");
         }
 
         setLoading(true)
