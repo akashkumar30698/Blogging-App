@@ -7,7 +7,7 @@ import './login.css'
 function SignUp() {
   const navigate = useNavigate();
   const [check,setCheck] = useState(null)
-
+  const [loading,setLoading] =  useState(false)
 
 
   const [formData, setFormData] = useState({
@@ -22,7 +22,7 @@ function SignUp() {
                                          //REMEMBER name is reserved so dont change it
   const handleSubmit = async (e) => {
     e.preventDefault(); 
-
+      setLoading(true)
     try {
       
       const response = await fetch(`${import.meta.env.VITE_APP_URL}/signUp`, {
@@ -37,15 +37,17 @@ function SignUp() {
          
         if (data !== "exist") {
        
-
+                setLoading(false)  
           navigate("/",{state : {signupState : true}});
         }
 
         else if(data == "exist"){
                setCheck(true)
+               setLoading(false)
         }
 
         else {
+          setLoading(false)
           console.error("Email already exists. Please try a different email.");
         }
 
@@ -55,6 +57,8 @@ function SignUp() {
       }
     } catch (error) {
       console.error("Signup error:", error);
+    }finally{
+      setLoading(false)
     }
   };
 
@@ -97,7 +101,7 @@ function SignUp() {
                     <button
                         type="submit"
                         className="w-full text-center py-3 rounded bg-black text-white hover:bg-gray focus:outline-none my-1"
-                    >Create Account</button>
+                    >{loading? "Signing UP" : "Sign UP"}</button>
 
                     <div className="text-center text-sm text-grey-dark mt-4">
                         By signing up, you agree to the 

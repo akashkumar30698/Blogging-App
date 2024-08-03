@@ -82,7 +82,7 @@ app.use("/",addBlog)
 
 
 // MongoDB connection
-connectToDB(`${process.env.MONGODB_CONNECTION}/Blogging-App`)
+connectToDB(`${process.env.MONGODB_CONNECTION}`)
   .then(() => {
     console.log("MongoDB connected");
   })
