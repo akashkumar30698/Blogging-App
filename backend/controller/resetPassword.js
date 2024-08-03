@@ -1,5 +1,5 @@
 const { newUser } = require("../model/userAuth")
-
+const { storeCurrentUserEmail } = require("./userAuth")
 
 async function handleResetPassword(req,res){
         
@@ -8,13 +8,13 @@ async function handleResetPassword(req,res){
           try{
             const { email,password,confirmPassword } = req.body
 
-          //  
+                const checkCurrentUserEmail = storeCurrentUserEmail()
 ///
               const checkEmailExist = await newUser.findOne({ email })
 
 
 
-            if(password != confirmPassword || !checkEmailExist){
+            if(password != confirmPassword || !checkEmailExist || email != checkCurrentUserEmail){
                 return res.json("failure")
             }
 

@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 require('dotenv').config(); //used for securing data so important credentials cannot be accessed through source code
 
 
-
+let currentUserEmail = null
 let username = ""
 let userId = null
 
@@ -156,8 +156,13 @@ const transporter = nodemailer.createTransport({
 
     else{
      
-      const otp = generateOTP();
+       currentUserEmail = email
 
+
+
+
+      const otp = generateOTP();
+       
       const mailOptions = {
           from: 'niteshsagar312004@gmail.com', //Same sender email
           to: email,
@@ -193,7 +198,9 @@ const transporter = nodemailer.createTransport({
  }
 
    
- 
+ function storeCurrentUserEmail(){
+  return currentUserEmail
+ }
 
 
 
@@ -207,5 +214,6 @@ module.exports = {
     handleParams,
     handleForgetPassword,
     storeTemporaryOTP,
-    handleUserId
+    handleUserId,
+    storeCurrentUserEmail,
 }
