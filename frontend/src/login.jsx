@@ -11,6 +11,7 @@ function Login() {
   const { setIsLoggedIn } = useLogin();
   const [check, setCheck] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error,setError] = useState(false)
 
   const [formData, setFormData] = useState({
     email: '',
@@ -35,24 +36,27 @@ function Login() {
 
       if (response.ok) {
         const data = await response.json();
-
+         
         if (data !== 'login-failed') {
           setIsLoggedIn(true);
           setCheck(false);
           navigate(`/${data.params}`, { state: { id: data.params} });
          
           localStorage.setItem("LoginToken",data.cookie)
-
+          setError(false)
+           
         } else {
           setFormData({
             email: '',
             password: '',
           });
           setCheck(true);
+          setError(false)
           console.log('Incorrect email or password');
         }
       } else {
         console.log('Error logging in');
+        setError(true)
       }
     } catch (err) {
       console.log('Oops, some error occurred:', err);
@@ -115,7 +119,7 @@ function Login() {
               </div>
             </div>
             {check && <p className='text-red-700'>Invalid Email or password</p>}
-
+            {error && <p className='text-red-700'>Error Logging in ! Please Try Again</p>}
             <div>
               <button
                 type="submit"
