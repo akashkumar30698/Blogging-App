@@ -24,15 +24,25 @@ app.get('*', (req, res) => {
 
 // CORS
 
-const corsOptions = {
-  origin: `${process.env.REACT_API_URL}`,
-  credentials: true,
-  methods: ['GET','POST','PUT','DELETE','PATCH','OPTIONS']
-}
- 
+const allowedOrigins = [
+  'https://blogging-app-frontend.onrender.com',
+   // Add all potential front-end URLs
+];
 
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+};
 
 app.use(cors(corsOptions));
+
 
 
 
