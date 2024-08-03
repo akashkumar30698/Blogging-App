@@ -141,11 +141,11 @@ const transporter = nodemailer.createTransport({
 //Forget Password
  async function handleForgetPassword(req,res){
 
-  const {  email } = req.body
 
   try{
    // 
-      
+   const {  email } = req.body
+
      const userExist =  await newUser.findOne({ email })
 
 
@@ -172,8 +172,8 @@ const transporter = nodemailer.createTransport({
           }
    
           storeOTP = parseInt(otp)
-          console.log(storeOTP)
-        return   res.status(200).send({ success: 'OTP sent successfully' });
+        
+        return   res.status(200).send("success");
       });
   
 

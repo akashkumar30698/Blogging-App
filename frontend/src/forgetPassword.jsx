@@ -36,17 +36,17 @@ function ForgetPassword() {
        
               
                 
-                    if(data.success){
+                    if(data == 'success'){
                         setCheck(false)
                         setEmail({
                             email : ""
                         })
                                         
                 navigate("/validateOTP")
-                        console.log(data)
+            
 
                     }
-                    else{
+                    else if(data == 'Invalid'){
                         setCheck(true)
                     }
 
