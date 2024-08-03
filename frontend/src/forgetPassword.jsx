@@ -38,9 +38,9 @@ function ForgetPassword() {
                 
                     if(data == 'success'){
                         setCheck(false)
-                       // setEmail({
-                         //   email : ""
-                       // })
+                        setEmail({
+                            email : ""
+                       })
                                         
                       navigate("/validateOTP")
             
