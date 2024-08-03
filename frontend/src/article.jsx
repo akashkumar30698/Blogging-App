@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom"
 function Article(){
      const location = useLocation()
      const { post } = location.state 
-     
+       console.log(location)
     return (
         <div className="center-container">
            <div key={post?._id} className="center bg-white shadow-md border border-gray-200 rounded-lg  mb-2">

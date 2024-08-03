@@ -13,6 +13,7 @@ import ValidateOTP from './validateOTP.jsx'
 import ResetPassword from './resetPassword.jsx'
 import Article from './article.jsx'
 import Navbar from './navbar.jsx'
+import NotFound from './notFound.jsx'
 /*
 IMPORTANT :
 AVOID USAGE OF PROXY IN CSR AS IT MIGHT CAUSE ERRORS
@@ -69,6 +70,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 <Route path='/resetPassword' element={<ResetPassword/>}/>
 
 <Route path='/article/:id' element={<Article/>} />
+
+
+ {/* Catch-all route for 404 */}
+ <Route path='*' element={<NotFound />} />
         </Routes>
 
       </BrowserRouter>
