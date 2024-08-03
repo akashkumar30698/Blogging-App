@@ -13,14 +13,12 @@ require('dotenv').config(); //used for securing data so important credentials ca
 
 const port = process.env.PORT || 4000;
 
-/*
-app.use(express.static(path.join(__dirname, '../frontend/index.html')));
-
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend', 'index.html'));
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
-*/
 
 // CORS
 
