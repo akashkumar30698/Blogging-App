@@ -20,7 +20,7 @@ function Cards() {
 
     useEffect(() => {
         const fetchPosts = async () => {
-            const token = Cookies.get("Login-Token");
+            const token = localStorage.getItem("LoginToken") || Cookies.get("Login-Token");
 
             if (!token) {
                 setLoading(false);
@@ -37,6 +37,8 @@ function Cards() {
                     const data = await response.json();
                     setPosts(data.posts);
                     setTotalPages(data.totalPages);
+
+                    
                 } else {
                     throw new Error('Failed to fetch posts');
                 }
