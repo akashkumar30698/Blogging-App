@@ -36,18 +36,18 @@ function Blog() {
         e.preventDefault();
 
         
-      //  const { cookie } = location.state || {}
+      
 
 
-        const token = Cookies.get("Login-Token");
-        console.log(location)
+        const token = localStorage.getItem("LoginToken") || Cookies.get("Login-Token");
+        console.log(token)
      
 
  
 
         if (!token) {
             navigate("/login");
-            return console.log("Login required location");
+            return console.log("Login required local");
         }
 
         setLoading(true)

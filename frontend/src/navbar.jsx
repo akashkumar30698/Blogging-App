@@ -21,6 +21,8 @@ function Navbar() {
     setIsLoggedIn(false);
 
     Cookies.remove("Login-Token", { path: "/" });
+
+    localStorage.removeItem("LoginToken")
   };
 
   //To remove alert
@@ -31,10 +33,9 @@ function Navbar() {
   //To handle refresh after login
   useEffect(() => {
    
-   // const { cookie } = location.state  || {}
          
          
-    const token = Cookies.get("Login-Token")
+    const token = localStorage.getItem("LoginToken") || Cookies.get("Login-Token")
     if (token) {
       setIsLoggedIn(true)
     }
