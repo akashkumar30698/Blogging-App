@@ -1,5 +1,7 @@
 const { newUser } = require("../model/userAuth")
 const { storeCurrentUserEmail } = require("./userAuth")
+const bcrypt = require('bcrypt')
+
 
 async function handleResetPassword(req,res){
         
@@ -18,9 +20,14 @@ async function handleResetPassword(req,res){
                 return res.json("failure")
             }
 
+            const saltRounds = 10;
+            const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+
+
 
           await newUser.findOneAndUpdate({email : email},
-            { $set : {password : password}},
+            { $set : {password : hashedPassword}},
             { new : true }
         )
              return res.json("success")
