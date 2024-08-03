@@ -173,7 +173,7 @@ const transporter = nodemailer.createTransport({
    
           storeOTP = parseInt(otp)
         
-        return   res.status(200).send("success");
+        return   res.status(200).json("success");
       });
   
 
