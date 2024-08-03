@@ -23,7 +23,7 @@ app.get('*', (req, res) => {
 // CORS
 
 const allowedOrigins = [
-  'https://blogging-app-frontend.onrender.com',
+  'https://blogging-app-frontend-flax.vercel.app',
    // Add all potential front-end URLs
 ];
 
