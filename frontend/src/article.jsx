@@ -5,6 +5,7 @@ function Article(){
      const location = useLocation()
      const { post } = location.state 
        console.log(location)
+       console.log(post)
     return (
         <div className="center-container">
            <div key={post?._id} className="center bg-white shadow-md border border-gray-200 rounded-lg  mb-2">
