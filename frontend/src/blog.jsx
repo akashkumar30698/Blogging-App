@@ -68,7 +68,7 @@ function Blog() {
                 method: 'POST',
                 headers: { 'Authorization': `Bearer ${token}` }, //Dont use 'Content-Type': 'application/json' as it is not able to transfer  large files like images
                 body: formDataToSend,
-            
+                 credentials: 'include'
             });
 
             if (res.ok) {
