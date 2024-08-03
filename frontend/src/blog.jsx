@@ -96,7 +96,7 @@ function Blog() {
                 setTimeout(() => setSuccess(false), 2000);
             } else {
                 setError(true)
-                console.log("Error posting blog:", res.statusText);
+                console.log("Error posting blog:");
             }
         } catch (err) {
             console.log("Error posting blog to the server", err);
