@@ -19,7 +19,7 @@ async function handleUserLogin(req,res){
     
 
       if(!user || user == null  ){
-        return res.json("login-failed")
+        return res.status(401).json("login-failed")
       }
 
       userId = user._id
@@ -30,11 +30,11 @@ async function handleUserLogin(req,res){
 
 
       if(!match){
-        return res.json("login-failed")
+        return res.status(401).json("login-failed")
       }
      
 
-      else if(match){
+      
           
           const token =  setUser({email,password})
         
@@ -50,7 +50,7 @@ async function handleUserLogin(req,res){
         
 
        //Sending username to frontend 
-       const user =   await newUser.findOne({email})   
+     
        userId = user._id
         
                   
@@ -61,7 +61,7 @@ async function handleUserLogin(req,res){
          
         })
           
-      }
+      
 }
 
 
