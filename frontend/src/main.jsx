@@ -15,7 +15,7 @@ import Article from './article.jsx'
 import Navbar from './navbar.jsx'
 import NotFound from './notFound.jsx'
 import UserPosts from './posts.jsx'
-
+import Hero from './hero.jsx'
 
 /*
 IMPORTANT :
@@ -27,6 +27,7 @@ const AllPostwithNavbar = () =>{
   return (
     <>
     <Navbar/>
+    <Hero/>
     <AllUserPosts/>
   </>
 
@@ -60,7 +61,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path="/" element={<App />} />
             <Route path="/:user" element={<App />} />
           </Route>
-          
+
             */}
 
           <Route path="/login" element={<Login />} />
