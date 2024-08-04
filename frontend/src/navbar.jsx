@@ -81,7 +81,7 @@ function Navbar() {
                 className="flex items-center p-1 font-sans text-sm antialiased font-medium leading-normal gap-x-2 text text-blue-gray-900">
 
 
-                <Link to={user && user.user ? `/${user.user}/blog ` : "/blog"} className="flex items-center">
+                <Link to={user && user.user ? `/${user.user}/blog ` : "/"} className="flex items-center">
                   Add Blog
                 </Link>
               </li>
@@ -89,7 +89,7 @@ function Navbar() {
                 className="flex items-center p-1 font-sans text-sm antialiased font-medium leading-normal gap-x-2 text text-blue-gray-900">
 
 
-                <Link to={user && user.user ? `/${user.user}/posts ` : "/posts"} className="flex items-center">
+                <Link to={user && user.user ? `/${user.user}/posts ` : "/"} className="flex items-center">
                   Your Posts
                 </Link>
               </li>
