@@ -63,6 +63,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           </Route>
 
             */}
+      <Route path='/' element={<App/>} />
+
+
 
           <Route path="/login" element={<Login />} />
           <Route path='/signUp' element={<SignUp />} />
@@ -74,10 +77,13 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path='/blog' element={<Blog />} />
           </Route>
 
+
+
+
           {/* Dynamic routing for Your Posts */}
-      
+        
             <Route path='/:user' element={<AllPostwithNavbar/>} />
-            <Route path='/' element={<AllPostwithNavbar/>} />
+         
             <Route path='/:user/posts' element={<PostwithNavbar/>}  />
         
 
