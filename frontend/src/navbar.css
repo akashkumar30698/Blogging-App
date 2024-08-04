@@ -184,7 +184,7 @@ html, body {
   
   display: flex;
   flex-direction: column;
-  background-color: rgb(33, 32, 32); /* For debugging */
+
 }
 
 .mobileNavigation {
@@ -192,7 +192,7 @@ html, body {
   background-color: #e5e7eb;
   
   height: calc(100vh - 2rem);
-  border: 2px solid red; /* For debugging */
+ 
 }
 
 @media only screen and (min-width: 990px) {
