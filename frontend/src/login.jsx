@@ -69,7 +69,7 @@ function Login() {
 
 
         }
-      } else if(response != 401) {
+      } else {
         console.log('Error logging in');
         setError(true)
       }

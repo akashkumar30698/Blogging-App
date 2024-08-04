@@ -1,6 +1,5 @@
 const { userBlog } = require("../model/blog");
 const { uploadOnCloudinary } = require("../cloud/cloudinary.js")
-
 const { handleUserId } = require("./userAuth.js")
 
 async function handleUserAddBlog(req, res) {

@@ -19,7 +19,7 @@ async function handleUserLogin(req,res){
     
 
       if(!user || user == null  ){
-        return res.status(401).json("login-failed")
+        return res.json("login-failed")
       }
 
       userId = user._id
@@ -30,7 +30,7 @@ async function handleUserLogin(req,res){
 
 
       if(!match || match == null){
-        return res.status(401).json("login-failed")
+        return res.json("login-failed")
       }
      
 
@@ -38,14 +38,15 @@ async function handleUserLogin(req,res){
           
           const token =  setUser({email,password})
         
-
+       /*
           res.cookie('Login-Token',token, {
             sameSite: 'None', // Required for cross-site cookies
             secure: true,     // Required for SameSite=None
             httpOnly: true,   
             path: '/'         
           });
-          
+     
+          */
         
         
 
@@ -130,7 +131,7 @@ const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
       user: 'niteshsagar312004@gmail.com',//senders mail
-      pass: 'kvpj srgg amwd jqvh' //You have to manually generate this. Go to gmail > click on profile picture > manage your google account > security > turn on 2 step authenthication > go to search bar > search app passwords > code is generated
+      pass: `${process.env.NODEMAILER_PASS}` //You have to manually generate this. Go to gmail > click on profile picture > manage your google account > security > turn on 2 step authenthication > go to search bar > search app passwords > code is generated
   }
 });
 
@@ -144,8 +145,7 @@ const transporter = nodemailer.createTransport({
 
   try{
    // 
-   const {  email } = req.body
-
+     const {  email } = req.body
      const userExist =  await newUser.findOne({ email })
 
 
