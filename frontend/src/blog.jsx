@@ -106,11 +106,7 @@ function Blog() {
                     <span className="font-medium">Success!</span> Your blog has been posted.
                 </div>
             )}
-            {fileError && (
-                <div className="text-red-700" role="alert">
-                    <span className="font-medium">Error !</span> Only JPEG and PNG images are allowed 
-                </div>
-            )}
+           
             <form onSubmit={handleUserSubmit} className="mg-t max-w-lg mx-auto" encType="multipart/form-data">
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black" htmlFor="user_avatar">Upload Photo</label>
                 <input
@@ -123,6 +119,15 @@ function Blog() {
                     onChange={handleChange}
                     required
                 />
+                 
+                 {fileError && (
+                <div className="text-red-700" role="alert">
+                    <span className="font-medium">Error !</span> Only JPEG and PNG images are allowed 
+                </div>
+                 )}
+
+
+
 
                 <label htmlFor="title" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Title</label>
                 <input
