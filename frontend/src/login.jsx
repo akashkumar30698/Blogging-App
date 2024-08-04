@@ -37,15 +37,11 @@ function Login() {
       if (response.ok) {
         const data = await response.json();
          
-        if (data != 'login-failed') {
-          setIsLoggedIn(true);
-          setCheck(false);
-          navigate(`/${data.params}`, { state: { id: data.params} });
-         
-          localStorage.setItem("LoginToken",data.cookie)
-          setError(false)
+        if (data == 'login-failed') {
+     
            
-        } else if(data == 'login-failed') {
+
+
           setFormData({
             email: '',
             password: '',
@@ -53,6 +49,25 @@ function Login() {
           setCheck(true);
           setError(false)
           console.log('Incorrect email or password');
+
+
+
+
+
+        } else if(data.message == 'success') {
+         
+
+          setIsLoggedIn(true);
+          setCheck(false);
+          navigate(`/${data.params}`, { state: { id: data.params} });
+         
+          localStorage.setItem("LoginToken",data.cookie)
+          setError(false)
+
+
+
+
+
         }
       } else {
         console.log('Error logging in');
