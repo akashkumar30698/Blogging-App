@@ -14,13 +14,16 @@ import ResetPassword from './resetPassword.jsx'
 import Article from './article.jsx'
 import Navbar from './navbar.jsx'
 import NotFound from './notFound.jsx'
+import UserPosts from './posts.jsx'
+
+
 /*
 IMPORTANT :
 AVOID USAGE OF PROXY IN CSR AS IT MIGHT CAUSE ERRORS
 */
 
 
-const PostwithNavbar = () =>{
+const AllPostwithNavbar = () =>{
   return (
     <>
     <Navbar/>
@@ -30,6 +33,20 @@ const PostwithNavbar = () =>{
   )
 
 }
+
+const PostwithNavbar = () =>{
+  return (
+    <>
+     <Navbar/>
+     <UserPosts/>
+    </>
+    
+  )
+}
+
+
+
+
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -57,8 +74,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
           {/* Dynamic routing for Your Posts */}
           <Route path="/">
-            <Route path='/:user' element={<PostwithNavbar/>} />
-            <Route path='/' element={<PostwithNavbar/>} />
+            <Route path='/:user' element={<AllPostwithNavbar/>} />
+            <Route path='/' element={<AllPostwithNavbar/>} />
+            <Route path='/:user/posts' element={<PostwithNavbar/>}  />
           </Route>
 
 
