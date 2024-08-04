@@ -40,21 +40,7 @@ function Navbar() {
   }, [])
 
 //To handle accessing undefined routes
- useEffect(()=>{
-    
-      if(!user){
-        console.log("Undefined user routes")
-      }
-  
-      return(
-        <>
-         <NotFound/>
-        </>
-      )
-
-
-
- },[user])
+ 
 
 
 
