@@ -3,6 +3,8 @@ import Cookies from 'js-cookie';
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import Navbar from "./navbar";
 
+
+
 function Blog() {
     const navigate = useNavigate();
     const [success, setSuccess] = useState(false);

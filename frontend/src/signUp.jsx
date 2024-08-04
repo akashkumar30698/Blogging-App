@@ -8,7 +8,7 @@ function SignUp() {
   const navigate = useNavigate();
   const [check,setCheck] = useState(null)
   const [loading,setLoading] =  useState(false)
-
+   const [passwordError,setPasswordError] = useState(false)
 
   const [formData, setFormData] = useState({
     name: "",           
@@ -22,6 +22,39 @@ function SignUp() {
                                          //REMEMBER name is reserved so dont change it
   const handleSubmit = async (e) => {
     e.preventDefault(); 
+
+        //Character sets for validation
+    const specialChar = "@#!%$&";
+    const smallAlpha = "abcdefghijklmnopqrstuvwxyz";
+    const capAlpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const num = "0123456789";
+
+    // Validation flags
+    let hasSpecialChar = false;
+    let hasSmallAlpha = false;
+    let hasCapAlpha = false;
+    let hasNum = false;
+
+    // Password validation logic
+    for (let char of formData.password) {
+      if (specialChar.includes(char)) hasSpecialChar = true;
+      if (smallAlpha.includes(char)) hasSmallAlpha = true;
+      if (capAlpha.includes(char)) hasCapAlpha = true;
+      if (num.includes(char)) hasNum = true;
+    }
+
+    if (!hasSpecialChar || !hasSmallAlpha || !hasCapAlpha || !hasNum) {
+      setPasswordError(true);
+      setLoading(false)
+      return;
+    } else {
+      setPasswordError(false);
+    }
+
+
+
+
+
       setLoading(true)
     try {
       
@@ -93,7 +126,8 @@ function SignUp() {
                         value={formData.password}
                         onChange={handleChange}
                         placeholder="Password" />
-             
+              
+              {passwordError && <p className="text-red-700">Password must contain Uppercase,lowercase,special char and numbers</p>}
                       
              {check && <p className=" mt-6" id="color"  >User already exists</p>  }
 
