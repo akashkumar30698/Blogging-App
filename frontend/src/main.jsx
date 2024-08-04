@@ -22,33 +22,24 @@ IMPORTANT :
 AVOID USAGE OF PROXY IN CSR AS IT MIGHT CAUSE ERRORS
 */
 
-
-const AllPostwithNavbar = () =>{
+const AllPostWithNavbar = () => {
   return (
     <>
-    <Navbar/>
-    <Hero/>
-    
-  </>
-
-  )
-
-}
-
-const PostwithNavbar = () =>{
-  return (
-    <>
-     <Navbar/>
-     <UserPosts/>
+      <Navbar />
+      <Hero />
+      <AllUserPosts />
     </>
-    
   )
 }
 
-
-
-
-
+const PostWithNavbar = () => {
+  return (
+    <>
+      <Navbar />
+      <UserPosts />
+    </>
+  )
+}
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -56,60 +47,34 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <BrowserRouter>
         <Routes>
 
-          { /* Dynamic routing for HOME 
-          <Route path='/'>
-            <Route path="/" element={<App />} />
-            <Route path="/:user" element={<App />} />
-          </Route>
+          {/* Home Route */}
+          <Route path="/" element={<App />} />
 
-            */}
-      
-
-
-
+          {/* Authentication Routes */}
           <Route path="/login" element={<Login />} />
-          <Route path='/signUp' element={<SignUp />} />
+          <Route path="/signUp" element={<SignUp />} />
 
+          {/* Blog Routes */}
+          <Route path="/:user/blog" element={<Blog />} />
+          <Route path="/blog" element={<Blog />} />
 
-          {/* Dynamic routing for Blog */}
-          <Route path="/">
-            <Route path='/:user/blog' element={<Blog />} />
-            <Route path='/blog' element={<Blog />} />
-          </Route>
+          {/* User and Posts Routes */}
+          <Route path="/:user" element={<AllPostWithNavbar />} />
+          <Route path="/:user/posts" element={<PostWithNavbar />} />
 
+          {/* Password Recovery Routes */}
+          <Route path="/forgetPassword" element={<ForgetPassword />} />
+          <Route path="/validateOTP" element={<ValidateOTP />} />
+          <Route path="/resetPassword" element={<ResetPassword />} />
 
+          {/* Article Route */}
+          <Route path="/article/:id" element={<Article />} />
 
+          {/* Catch-all route for 404 */}
+          <Route path="*" element={<NotFound />} />
 
-          {/* Dynamic routing for Your Posts */}
-        
-           <Route path='/'>
-           
-            <Route path='/' element={<App/>}/>   
-            <Route path='/:user' element={<AllPostwithNavbar/>} />
-            <Route path='/:user/posts' element={<PostwithNavbar/>}  />
-
-           </Route>
-           
-        
-
-
-<Route path='/forgetPassword'  element={<ForgetPassword/>}/>
-
-
-<Route path='/validateOTP' element={<ValidateOTP/>} />
-
-<Route path='/resetPassword' element={<ResetPassword/>}/>
-
-<Route path='/article/:id' element={<Article/>} />
-
-
- {/* Catch-all route for 404 */}
- <Route path='*' element={<NotFound />} />
         </Routes>
-
       </BrowserRouter>
     </LoginProvider>
-
-
   </React.StrictMode>,
 )
