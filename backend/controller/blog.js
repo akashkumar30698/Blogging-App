@@ -52,11 +52,11 @@ async function handleUserYourPosts(req, res) {
   try {
      const userIdToFind = handleUserId()
 
-    const posts = await userBlog.find({ userIdToFind })
+    const posts = await userBlog.find({createdBy: userIdToFind })
                             .skip(skip)
                             .limit(limit);
                           
-    const totalPosts = await userBlog.countDocuments({ userIdToFind });
+    const totalPosts = await userBlog.countDocuments({createdBy: userIdToFind });
 
   return  res.json({ posts, totalPosts, totalPages: Math.ceil(totalPosts / limit) })
 
@@ -88,7 +88,6 @@ async function handleAllUserPosts(req,res){
 
     const posts = await userBlog.find(filter)
                             .skip(skip)
-                            .skip(userIdToExclude)
                             .limit(limit)
                             .exec() //(Optionals to use) exec stands for execution it simply returns a promise 
                           
