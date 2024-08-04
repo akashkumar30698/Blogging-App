@@ -37,7 +37,7 @@ function Login() {
       if (response.ok) {
         const data = await response.json();
          
-        if (data !== 'login-failed') {
+        if (data != 'login-failed') {
           setIsLoggedIn(true);
           setCheck(false);
           navigate(`/${data.params}`, { state: { id: data.params} });
@@ -45,7 +45,7 @@ function Login() {
           localStorage.setItem("LoginToken",data.cookie)
           setError(false)
            
-        } else {
+        } else if(data == 'login-failed') {
           setFormData({
             email: '',
             password: '',
