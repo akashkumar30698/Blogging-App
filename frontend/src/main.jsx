@@ -56,7 +56,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
           {/* Blog Routes */}
           <Route path="/:user/blog" element={<Blog />} />
-          <Route path="/blog" element={<Blog />} />
+         
 
           {/* User and Posts Routes */}
           <Route path="/:user" element={<AllPostWithNavbar />} />
