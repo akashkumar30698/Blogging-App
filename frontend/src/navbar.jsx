@@ -32,15 +32,36 @@ function Navbar() {
 
   //To handle refresh after login
   useEffect(() => {
-   
-         
-         
     const token = localStorage.getItem("LoginToken") || Cookies.get("Login-Token")
     if (token) {
       setIsLoggedIn(true)
     }
 
   }, [])
+
+//To handle accessing undefined routes
+ useEffect(()=>{
+    
+      if(!user){
+        console.log("Undefined user routes")
+      }
+  
+      return(
+        <>
+         <NotFound/>
+        </>
+      )
+
+
+
+ },[user])
+
+
+
+
+
+
+
 
 
   const hamburgerClick = () => {
@@ -73,7 +94,7 @@ function Navbar() {
               <li
                 className="flex items-center p-1 font-sans text-sm antialiased font-medium leading-normal gap-x-2 text text-blue-gray-900">
 
-                <Link to={user && user.user ? `/${user.user}` : <NotFound/>} className="flex items-center">
+                <Link to={user && user.user ? `/${user.user}` : "/"} className="flex items-center">
                   Home
                 </Link>
               </li>
@@ -81,7 +102,7 @@ function Navbar() {
                 className="flex items-center p-1 font-sans text-sm antialiased font-medium leading-normal gap-x-2 text text-blue-gray-900">
 
 
-                <Link to={user && user.user ? `/${user.user}/blog ` : <NotFound/>} className="flex items-center">
+                <Link to={user && user.user ? `/${user.user}/blog ` : "/"} className="flex items-center">
                   Add Blog
                 </Link>
               </li>
@@ -89,7 +110,7 @@ function Navbar() {
                 className="flex items-center p-1 font-sans text-sm antialiased font-medium leading-normal gap-x-2 text text-blue-gray-900">
 
 
-                <Link to={user && user.user ? `/${user.user}/posts ` : <NotFound/>} className="flex items-center">
+                <Link to={user && user.user ? `/${user.user}/posts ` : "/posts"} className="flex items-center">
                   Your Posts
                 </Link>
               </li>
