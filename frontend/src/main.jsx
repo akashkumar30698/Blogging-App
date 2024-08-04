@@ -28,7 +28,7 @@ const AllPostwithNavbar = () =>{
     <>
     <Navbar/>
     <Hero/>
-    <AllUserPosts/>
+    
   </>
 
   )
