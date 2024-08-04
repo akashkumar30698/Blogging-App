@@ -8,6 +8,7 @@ function AllUserPosts(){
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
 
+    const navigate = useNavigate()
 
     useEffect(()=>{
            const fetchPosts = async () =>{
