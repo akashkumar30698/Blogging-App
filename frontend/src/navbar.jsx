@@ -5,7 +5,7 @@ import './navbar.css';
 import { useLogin } from './LoginContext';
 import Cookies from 'js-cookie'
 import Navlinks from './navlinks';
-import NotFound from './notFound';
+
 
 function Navbar() {
   const { isLoggedIn, setIsLoggedIn } = useLogin();
@@ -39,7 +39,7 @@ function Navbar() {
 
   }, [])
 
-//To handle accessing undefined routes
+
  
 
 
