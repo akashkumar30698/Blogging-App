@@ -29,7 +29,7 @@ async function handleUserLogin(req,res){
       
 
 
-      if(!match){
+      if(!match || match == null){
         return res.status(401).json("login-failed")
       }
      
@@ -39,7 +39,7 @@ async function handleUserLogin(req,res){
           const token =  setUser({email,password})
         
 
-          res.cookie('Login-Token', token, {
+          res.cookie('Login-Token',token, {
             sameSite: 'None', // Required for cross-site cookies
             secure: true,     // Required for SameSite=None
             httpOnly: true,   
