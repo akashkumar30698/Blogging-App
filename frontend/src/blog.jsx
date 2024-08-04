@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import Cookies from 'js-cookie';
-import { useNavigate ,useLocation } from "react-router-dom";
+import { useNavigate ,useLocation, useParams } from "react-router-dom";
 import Navbar from "./navbar";
 
 
@@ -11,6 +11,7 @@ function Blog() {
     const [loading,setLoading] = useState(false)
     const [error,setError] = useState(false)
     const location = useLocation()
+    const userId = useParams()
     const [formData, setFormData] = useState({
         upload: "",
         title: "",
@@ -63,9 +64,12 @@ function Blog() {
         formDataToSend.append('upload', formData.upload);
         formDataToSend.append('title', formData.title);
         formDataToSend.append('body', formData.body);
+       
+      
+
 
         try {
-            const res = await fetch(`${import.meta.env.VITE_APP_URL}/:user/blog`, {
+            const res = await fetch(`${import.meta.env.VITE_APP_URL}/:user/blog?userId=${userId}`, {
                 method: 'POST',
                 headers: { 'Authorization': `Bearer ${token}` }, //Dont use 'Content-Type': 'application/json' as it is not able to transfer  large files like images
                 body: formDataToSend,

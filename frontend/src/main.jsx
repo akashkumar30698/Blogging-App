@@ -7,7 +7,7 @@ import Login from './login.jsx'
 import SignUp from './signUp.jsx'
 import { LoginProvider } from './LoginContext.jsx'
 import Blog from './blog.jsx'
-import Cards from './posts.jsx'
+import AllUserPosts from './allUserPosts.jsx'
 import ForgetPassword from './forgetPassword'; 
 import ValidateOTP from './validateOTP.jsx'
 import ResetPassword from './resetPassword.jsx'
@@ -24,7 +24,7 @@ const PostwithNavbar = () =>{
   return (
     <>
     <Navbar/>
-    <Cards/>
+    <AllUserPosts/>
   </>
 
   )
@@ -57,8 +57,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
           {/* Dynamic routing for Your Posts */}
           <Route path="/">
-            <Route path='/:user/posts' element={<PostwithNavbar/>} />
-            <Route path='/posts' element={<PostwithNavbar/>} />
+            <Route path='/:user' element={<PostwithNavbar/>} />
+            <Route path='/' element={<PostwithNavbar/>} />
           </Route>
 
 

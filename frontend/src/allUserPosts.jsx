@@ -1,34 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import './navbar.css';
-import Cookies from 'js-cookie';
 import { useNavigate,useLocation } from 'react-router-dom';
 
-function UserPosts() {
+function AllUserPosts(){
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-   
-    const [deleteMessage, setDeleteMessage] = useState(false);
-    const [deleteLoading, setDeleteLoading] = useState(false);
-
-    const navigate = useNavigate();
-  
-   
 
 
-    useEffect(() => {
-        const fetchPosts = async () => {
+    useEffect(()=>{
+           const fetchPosts = async () =>{
             const token = localStorage.getItem("LoginToken") || Cookies.get("Login-Token");
 
             if (!token) {
                 setLoading(false);
                 return;
             }
-                                            ///            passing updated values through query parameters
-            try {                                                        //                       |
-                const response = await fetch(`${import.meta.env.VITE_APP_URL}/:user/posts?page=${page}&limit=6`, {
+                    
+            try {                                                                              
+                const response = await fetch(`${import.meta.env.VITE_APP_URL}/:user?page=${page}&limit=6`, {
                     method: 'GET',
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
@@ -51,7 +42,14 @@ function UserPosts() {
         };
 
         fetchPosts();
-    }, [page]);
+
+    },[page])
+
+
+
+    const handleClick = (post) => {
+        navigate(`/article/${post._id}`, { state: { post } });
+    };
 
     if (loading) {
         return <div>Loading...</div>;
@@ -60,44 +58,6 @@ function UserPosts() {
     if (error) {
         return <div>Error: {error}</div>;
     }
-
-    const handleClick = (post) => {
-        navigate(`/article/${post._id}`, { state: { post } });
-    };
-
-    const handleDeleteClick = async (postId) => {
-        setDeleteLoading(true);
-      
-
-        try {
-            const token = Cookies.get("Login-Token");
-
-            const response = await fetch(`${import.meta.env.VITE_APP_URL}/:user/posts`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                },  
-                body: JSON.stringify({ postId: postId }),
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-
-                if (data.success) {
-                    setPosts((prevPosts) => prevPosts.filter((post) => post._id !== postId));
-                    setDeleteMessage(true);
-                    setTimeout(() => { setDeleteMessage(false); }, 2000);
-                }
-            } else {
-                throw new Error('Failed to delete posts');
-            }
-        } catch (err) {
-            setError(err.message);
-            console.log("Error fetching data from backend at post.jsx", err);
-        } finally {
-            setDeleteLoading(false);
-        }
-    };
 
     const handlePreviousPage = () => {
         if (page > 1) {
@@ -112,14 +72,14 @@ function UserPosts() {
 
     };
 
-    return (
-        <>
-            {deleteMessage && (
-                <div className="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
-                    <span className="font-medium">Success!</span> Your blog has been deleted successfully.
-                </div>
-            )}
 
+
+
+
+
+    return(
+        <>
+                  
             <div className="post-length max-w-lg mx-auto posts">
                 {posts.length === 0 ? (
                     <div>No Posts Available</div>
@@ -137,9 +97,7 @@ function UserPosts() {
                                 <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center" onClick={() => handleClick(post)}>
                                     Read more
                                 </button>
-                                <button className="css text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center" onClick={() => handleDeleteClick(post._id)}>
-                                    {deleteLoading ? "Deleting" : "Delete"}
-                                </button>
+                              
                             </div>
                         </div>
                     ))
@@ -155,8 +113,10 @@ function UserPosts() {
                     Next
                 </button>
             </div>
+        
+
         </>
-    );
+    )
 }
 
-export default UserPosts;
+export default AllUserPosts

@@ -14,6 +14,8 @@ router.post("/:user/blog",uploadFiles().single('upload') ,handleUserAddBlog)
 router.get("/:user/posts",handleUserYourPosts)
 
 
+//AllUserPosts
+router.get("/:user",handleAllUserPosts)
 
 
 //Delete Post
