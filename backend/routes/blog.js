@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router()
-const { handleUserAddBlog, handleUserYourPosts,handleDeletePost} = require("../controller/blog")
+const { handleUserAddBlog, handleUserYourPosts,handleAllUserPosts,handleDeletePost} = require("../controller/blog")
 const { uploadFiles } = require("../multer/upload")
 
 
