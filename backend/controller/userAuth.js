@@ -34,7 +34,7 @@ async function handleUserLogin(req,res){
       }
      
 
-      else{
+      else if(match){
           
           const token =  setUser({email,password})
         

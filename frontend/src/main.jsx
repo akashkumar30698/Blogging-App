@@ -71,7 +71,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/article/:id" element={<Article />} />
 
           {/* Catch-all route for 404 */}
-          <Route path="/*" element={<NotFound />} />
+          <Route path="*" element={<NotFound />} />
 
         </Routes>
       </BrowserRouter>
