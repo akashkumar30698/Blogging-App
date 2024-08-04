@@ -1,10 +1,14 @@
 {
-    "rewrites": [
+  "rewrites": [
+    { "source": "/login", "destination": "/index.html" },
+    { "source": "/signUp", "destination": "/index.html" },
+    { "source": "/:user/blog", "destination": "/index.html" },
+    { "source": "/:user", "destination": "/index.html" },
+    { "source": "/:user/posts", "destination": "/index.html" },
+    { "source": "/forgetPassword", "destination": "/index.html" },
+    { "source": "/validateOTP", "destination": "/index.html" },
+    { "source": "/resetPassword", "destination": "/index.html" },
+    { "source": "/article/:id", "destination": "/index.html" }
 
-      {
-        "source": "/(.*)",
-        "destination": "/index.html"  
-      }
-    ]
-  }
-  
+  ]
+}
