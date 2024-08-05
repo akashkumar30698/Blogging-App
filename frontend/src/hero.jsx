@@ -10,7 +10,7 @@ function Hero() {
   
 
     const handleClick = () => {
-        navigate("/blog")
+        navigate("/:user/blog")
     }
 
     return (
