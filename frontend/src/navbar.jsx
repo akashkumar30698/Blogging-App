@@ -33,10 +33,16 @@ function Navbar() {
   //To handle refresh after login
   useEffect(() => {
     const token = localStorage.getItem("LoginToken") || Cookies.get("Login-Token")
-       console.log(user)
+    const isIdPresentinURL = user.user
+   
+    if(!isIdPresentinURL && token || isIdPresentinURL == null && token){
+      localStorage.removeItem("LoginToken")
+      setIsLoggedIn(false)
+      return;
+    }
 
 
-    if (token) {
+  else  if (token) {
       setIsLoggedIn(true)
     }
 
